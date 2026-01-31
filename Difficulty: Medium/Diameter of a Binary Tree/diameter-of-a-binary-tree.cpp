@@ -1,26 +1,39 @@
+/*
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
 
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+*/
 
 class Solution {
   public:
   
-    int height(Node* root){
+    int height(Node* root , int& dia){
+        if(root == NULL) return 0;
         
-        if(root == NULL) return -1;
+        int lh = height(root->left , dia);
+        int rh = height(root->right , dia);
         
-        return 1 + max(height(root->left) , height(root->right));
+        dia = max(dia , lh+rh);
+        
+        return 1 + max(lh,rh);
     }
   
     int diameter(Node* root) {
         
-        //base case
-        if(root == NULL) return 0;
+        int dia = 0;
         
-        int opt1 = diameter(root->left);
-        int opt2 = diameter(root->right);
-        int opt3 = height(root->left) + height(root->right) + 2;
+        int ans = height(root , dia);
         
-        int ans = max(opt1 , max(opt2,opt3));
-        return ans;
+        return dia;
         
     }
 };
