@@ -19,19 +19,19 @@ class Solution {
     int height(Node* root , int& dia){
         if(root == NULL) return 0;
         
-        int lh = height(root->left , dia);
-        int rh = height(root->right , dia);
+        int left = height(root->left , dia);
+        int right = height(root->right , dia);
         
-        dia = max(dia , lh+rh);
+        dia = max(dia , left + right);
         
-        return 1 + max(lh,rh);
+        return 1 + max(left , right);
     }
   
     int diameter(Node* root) {
         
         int dia = 0;
         
-        int ans = height(root , dia);
+        height(root , dia);
         
         return dia;
         
