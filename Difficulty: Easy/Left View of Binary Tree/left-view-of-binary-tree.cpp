@@ -3,26 +3,24 @@
 class Solution {
   public:
   
-    
-    void view(Node* root , int level , vector<int>& ds){
+    void helper(Node* root , vector<int>& ans , int lvl){
         
         if(root == NULL) return;
         
-        if(ds.size() == level) ds.push_back(root->data);
+        if(ans.size() == lvl){
+            ans.push_back(root->data);
+        }
         
-        //preorder
-        view(root->left , level+1 , ds);
-        view(root->right , level+1 , ds);
+        helper(root->left , ans , lvl+1);
+        helper(root->right , ans , lvl+1);
     }
-    
   
     vector<int> leftView(Node *root) {
-        
-        vector<int>ds;
-        
-        view(root , 0 , ds);
-        
-        return ds;
+         
+        vector<int>ans;
+        int lvl = 0;
+        helper(root,ans,lvl);
+        return ans;
         
     }
 };
