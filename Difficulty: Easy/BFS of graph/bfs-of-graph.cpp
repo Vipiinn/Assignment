@@ -1,8 +1,10 @@
 class Solution {
   public:
   
-    void bfs(vector<vector<int>> & adj ,unordered_map<int,bool>& visited , vector<int>& ans , int node){
-        
+  
+    void breadthFirstSearch(vector<vector<int>>& adj , unordered_map<int,bool>& visited , 
+                            vector<int>& ans , int node){
+                                
         queue<int>q;
         q.push(node);
         visited[node] = true;
@@ -19,14 +21,15 @@ class Solution {
                 }
             }
         }
+                                
     }
   
     vector<int> bfs(vector<vector<int>> &adj) {
         
         vector<int>ans;
-        unordered_map<int,bool>visited;
+        unordered_map<int,bool> visited;
         
-        bfs(adj , visited , ans , 0);
+        breadthFirstSearch(adj,visited,ans,0);
         
         return ans;
         
