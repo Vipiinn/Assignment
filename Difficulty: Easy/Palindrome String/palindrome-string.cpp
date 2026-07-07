@@ -1,18 +1,20 @@
 class Solution {
   public:
+  
+    bool checkPalindrome(string& s, int idx){
+        
+        if(idx >= s.length()){
+            return true;
+        }
+        
+        if(s[idx] != s[s.length()-idx-1]) return false;
+        
+        return checkPalindrome(s,idx+1);
+    }
+  
     bool isPalindrome(string& s) {
         
-        int i = 0;
-        int j = s.length()-1;
+        return checkPalindrome(s , 0);
         
-        while(i < j){
-            if(s[i] != s[j]){
-                return false;
-            }
-            i++;
-            j--;
-        }
-
-        return true;        
     }
 };
